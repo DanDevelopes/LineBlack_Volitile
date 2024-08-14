@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv8kn86rrnmus"]
+
+[ext_resource type="Script" path="res://Assets/Code/Logic/GameAI/PathFinding/Breadcrums/Breadcrum_Path.cs" id="1_vd2jf"]
+
+[node name="Breadcrum_Path" type="Area2D"]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_vd2jf")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1.43051e-06, -9.53674e-07)
+scale = Vector2(1.875, 1.875)
+polygon = PackedVector2Array(-8, 0, 0, 8, 8, 0, 0, -8)

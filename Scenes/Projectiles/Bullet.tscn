@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dms66kk5bkeia"]
+
+[ext_resource type="Script" path="res://Assets/Code/Items/Weopons/Projectiles/Bullet.cs" id="1_nsv8f"]
+[ext_resource type="Texture2D" uid="uid://chmvpuqvldakm" path="res://Assets/Sprites/projectiles/bullet.png" id="2_ridcj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_402oc"]
+a = Vector2(2, 0)
+b = Vector2(-2, 0)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_nsv8f")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_ridcj")
+
+[node name="HitBoxDetect" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_402oc")
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="WallDetect" type="CollisionShape2D" parent="WallDetector"]
+shape = SubResource("SegmentShape2D_402oc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="WallDetector" to="." method="_on_wall_detector_area_entered"]
+[connection signal="area_entered" from="WallDetector" to="." method="_on_has_hit_wall_area_entered"]

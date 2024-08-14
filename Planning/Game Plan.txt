@@ -1,0 +1,174 @@
+futuristic zomboid like survival 
+
+post apocalyptic world(war, delusional soldiers, scavenger, bio engineered mutant animals, singularity AI/Killer robots, wild animals/flora, and abandoned building, technology,  vehicles, and ruins) 
+
+world lore
+war has happened, everyone unfortunate to still be alive is either fighting to survive, lost their minds, or thriving off the backs of others.
+
+there is many threats within the world such as rogue AIs designed to kill everything or working perfectly from an enemy state even though there is no more war and will use everything at their disposal including bio weapons and killer hunter robots. make sure not to be hunted yourself or get caught in a crossfire.
+
+mutated and wild creatures or savage survivors roam the world looking for their next meal and are more than willing to hunt, swarm and track you down.
+
+enemies:
+each enemy will be attracted either by your presence or what's in the surroundings, such as death and rotting corpses, where players or survivors have been spotted, scrap and loot
+they will not take cover but keep distance unless you have a gun then they will take cover. 
+world:
+	environmental dangers:
+		biohazard chemicals:
+		weaponized flora:
+		Flooding:
+	Day Night Cycle:
+
+player character classes:
+	Health system:
+		Bloody Death:
+	
+	perks:
+	character progression:
+		attributes:
+			Agility:
+				Sprint distance
+			Perception:
+				Aiming
+			Endurance:
+				health amount
+			intellegence:
+				sub attributes:
+					Engineering:
+					Crafting:
+				hacking
+				perdicting enemy movements
+
+			luck:
+				loot gathering
+				enemy weopon malfunction
+				really unfortunate events that act in your favour
+	crafting:
+
+Non Play Characters:
+	Aggresion system:
+		if gun pointed at will threaten to retaliate, open fire, flee, or drop items and flee.
+		can be detemined by npc aggression/inteligence level
+	loot: 
+		if encounted dead body will search for loot and if anything it wants
+	Health system:
+		Bloody Death:
+			
+	Non player faction: 
+		Scabs: 
+			a non loyal charecter/s that can be found in groups or on their own and morelikely to shoot a 
+			fellow scab just to try out a newly found or crafted weopon or acidentaly shoot themselve.
+			drops: 
+			attracted by: technology scrap, junk scrap, food/water, and secure and defendable areas
+Items: 
+		Guns:
+			Shoot Mechanic: 
+			cursor aim and clock:
+				Bullets will not be detectable or monitor until in position of where mouse clicked.
+				could have elemental damage.
+			Scab gun:
+				do not use or risk offchance that you end up shooting yourself by a missfire or the gun
+				blowing up in you face.
+		Crab Bots: 
+			Robots that run can run at people run at people, stun them, (Absolutly considure this) steam from (maybe), Disarm traps with them.
+			Can be determined by engineerings 
+			gun crab: 
+				Shoots charactors
+			stun crab: 
+				Stuns Charactors
+			Scavenger crab:
+				finds shit or useful shit
+		Health Items:
+			Bandages: 
+				stops bleeding
+			needle and thread:
+			Nano bot sringe:
+				heals all	
+		Food:
+			Human meat:
+			Mutantated animal meat:
+			Crops:
+
+eco system(maybe):
+	Wildlife:
+		
+
+Factions:
+
+	Human:
+		Scabs:
+			Idiots with lower tier weopons self exploding guns
+
+		Scavs:
+			Scavenges, Find Junk, Try to salvage what they can
+
+		Raiders:
+			They want what you have and won't ask nicely
+
+		Huskers:
+			Lost every bit of humanity they once had, they only care about survival and nothing else only see other
+			factions or pretty much anything edible as a meal.
+
+		Unamed:
+			Generic group just looking to survive
+
+		Splicers:
+			Self genetically modified, can coinhabit with mutants as thier underlings
+
+		TechnoFreaks:
+			Highly skilled with technology, use it to enhance themselves as well as to build high grade robots
+		
+		Phykers:
+			Predict where motives
+
+		Enforces:
+			Prewar Pristine group looking to claim the worldiness as thier own. Authoriterian. See others as weaker
+			and prepared to kill with prejudice and clense the world or the filth that remains.
+
+	Cybernetic	
+		ADIOS:
+			Autonimous Defence and Inteligence Operating Systems.
+			Rogue Ai, "Created to protect Human" but in order to protect human there must only be one left.  
+
+		RE-CORE:
+			Royal Empirical - CORE.
+			AI from a war long ago Designed to destroy and eleminate all who enhabit the lands.
+
+				
+ 
+survival strategy:
+	either outwitting by using stealth and traps or gun blazing, predictability is your enemy, set traps, destroy overloads to disorganise enemies
+
+pre war tech:
+
+
+difficulty:
+	Overall Difficulty:
+		You utter nutcase:
+		Hard:
+		Meduim:
+		Easy:
+	These will be developer prefered as recomended by the player.
+
+save: psychic foresight
+	Psyker mode: ability to save and take different paths
+	
+respawn: Nanites
+	Immortal tech god: recharging nanites (easy)
+	enhanced cybernetics: nanites need recharging before respawn (medium)
+	Mortal: permadeath (Hardcore)
+
+world difficulty:
+	change Enviroment, balance, Enemy Attributes, resource amount, eniviromental hazards.
+Quests:
+	Scab Machine Revolt: machines question why they were created with such inefficiency.
+
+
+
+
+coding/Design Notes:
+	BreadCrum needs to be 150 > 200 pixels close to each other unless seperated from each other through wall or physical object not two of these can be heading the same direction within this distance.
+
+	Path goto selected node chosen by action which the point that the path the enity is on can find the closest one
+	Code the least amount of breadcrums to find disired node.
+	

@@ -1,0 +1,55 @@
+[Messege] Time: 06:31 : Logging Start
+[Messege] Time: 06:31 : PlayerScript is Initialized
+[Messege] Time: 06:31 : EnemyTest is Initialized
+[Messege] Time: 08:31 : PlayerScript is Initialized
+[Messege] Time: 08:31 : EnemyTest is Initialized
+[Messege] Time: 08:31 : Logging Start
+[Messege] Time: 08:33 : PlayerScript is Initialized
+[Messege] Time: 08:33 : EnemyTest is Initialized
+[Messege] Time: 08:33 : Logging Start
+[Messege] Time: 08:35 : PlayerScript is Initialized
+[Messege] Time: 08:35 : EnemyTest is Initialized
+[Messege] Time: 08:35 : Logging Start
+[Messege] Time: 08:37 : PlayerScript is Initialized
+[Messege] Time: 08:37 : Logging Start
+[Messege] Time: 08:37 : EnemyTest is Initialized
+[Messege] Time: 08:49 : EnemyTest is Initialized
+[Messege] Time: 08:49 : Logging Start
+[Messege] Time: 08:49 : PlayerScript is Initialized
+[Messege] Time: 08:49 : EnemyTest is Initialized
+[Messege] Time: 08:49 : EnemyTest is Initialized
+[Messege] Time: 08:50 : PlayerScript is Initialized
+[Messege] Time: 08:50 : Logging Start
+[Messege] Time: 08:50 : EnemyTest is Initialized
+[Messege] Time: 08:50 : EnemyTest is Initialized
+[Messege] Time: 08:50 : EnemyTest is Initialized
+[Messege] Time: 08:59 : PlayerScript is Initialized
+[Messege] Time: 08:59 : Logging Start
+[Messege] Time: 08:59 : EnemyTest is Initialized
+[Messege] Time: 08:59 : EnemyTest is Initialized
+[Messege] Time: 08:59 : EnemyTest is Initialized
+[Messege] Time: 09:12 : PlayerScript is Initialized
+[Messege] Time: 09:12 : Logging Start
+[Messege] Time: 09:12 : EnemyTest is Initialized
+[Messege] Time: 09:12 : EnemyTest is Initialized
+[Messege] Time: 09:12 : EnemyTest is Initialized
+[Messege] Time: 09:35 : PlayerScript is Initialized
+[Messege] Time: 09:35 : Logging Start
+[Messege] Time: 09:35 : EnemyTest is Initialized
+[Messege] Time: 09:35 : EnemyTest is Initialized
+[Messege] Time: 09:35 : EnemyTest is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : PlayerScript is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : Logging Start
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : PlayerScript is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : Logging Start
+[Messege] Time: 10:27 : Logging Start
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized
+[Messege] Time: 10:27 : PlayerScript is Initialized
+[Messege] Time: 10:27 : EnemyTest is Initialized

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ecs6imeg1rob"]
+
+[ext_resource type="PackedScene" uid="uid://s68pec3b0dq4" path="res://Scenes/Levels/rightWall.tscn" id="1_i8ucs"]
+[ext_resource type="PackedScene" uid="uid://b0dqpl31u6xox" path="res://Scenes/Levels/leftWall.tscn" id="2_yh51v"]
+
+[node name="WallAtlas" type="Node2D"]
+
+[node name="rightWall" parent="." instance=ExtResource("1_i8ucs")]
+position = Vector2(0, 0)
+
+[node name="leftWall" parent="." instance=ExtResource("2_yh51v")]

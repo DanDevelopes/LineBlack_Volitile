@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpp8pxb3s84sx"]
+
+[ext_resource type="Texture2D" uid="uid://bajpfwiqvch55" path="res://Assets/Sprites/Templates/TileBackGroundTemplate.png" id="1_06l38"]
+[ext_resource type="Script" path="res://Scenes/enemy/enemy.gd" id="1_qfjmu"]
+[ext_resource type="Texture2D" uid="uid://lfrsfdr7es54" path="res://Assets/Sprites/Templates/GenericHumanTemplateModel.png" id="2_ljobl"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_qfjmu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_06l38")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ljobl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="x_y_sort" type="Marker2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 26)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(3.33786e-06, 26)
+scale = Vector2(0.845397, -0.378722)
+polygon = PackedVector2Array(-14.7692, 0, -2.05407e-06, -14.7692, 16, 0, -2.05407e-06, 14.7692)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -15.0
+offset_top = -63.0
+offset_right = 25.0
+offset_bottom = -40.0
+
+[node name="Head" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
+position = Vector2(0, 27)
+scale = Vector2(1.625, 0.8125)
+polygon = PackedVector2Array(-3.07693, -52.9231, -3.69231, -64, -1.84616, -67.6923, 1.23077, -68.9231, 4.30769, -64, 4.92308, -54.1538, 3.07692, -51.6923)
+
+[node name="Torso" type="Area2D" parent="Head"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head/Torso"]
+position = Vector2(2.27374e-13, 26)
+scale = Vector2(1.625, 0.8125)
+polygon = PackedVector2Array(-4.92308, -2.46154, -3.69231, -4.92308, -4.30769, -25.8462, -8, -25.8462, -5.53846, -51.6923, -2.46154, -50.4615, 3.07692, -49.2308, 6.15385, -49.2308, 8, -36.9231, 6.15385, -23.3846, 5.53846, -22.1538, 4.92308, 1.23077, -1.39922e-13, 3.69231, -1.23077, 1.23077, -5.53846, 1.23077)
+
+[connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
+[connection signal="area_entered" from="Head/Torso" to="." method="_on_torso_area_entered"]

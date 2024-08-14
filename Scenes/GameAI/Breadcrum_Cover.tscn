@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://drp4yjtdrjxrk"]
+
+[ext_resource type="Script" path="res://Assets/Code/Logic/GameAI/PathFinding/Breadcrums/Breadcrum_Cover.cs" id="1_iaph7"]
+
+[node name="Breadcrum_Cover" type="Node2D"]
+script = ExtResource("1_iaph7")
+
+[node name="SeePlayer" type="RayCast2D" parent="."]
+collision_mask = 2
+hit_from_inside = true

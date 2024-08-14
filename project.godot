@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="LineBlack_Volitile"
+run/main_scene="res://Scenes/Levels/testLevel.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+run/max_fps=24
+config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="LineBlack_Volitile"
+
+[layer_names]
+
+2d_physics/layer_1="Charecters"
+2d_navigation/layer_1="MeduimSize"
+2d_physics/layer_2="Walls"
+2d_navigation/layer_2="HugeSize"
+2d_physics/layer_3="Projectiles"
+2d_navigation/layer_3="SmallSize"
+2d_physics/layer_4="EnemiesHitBox"
+2d_physics/layer_5="Breadcrum"

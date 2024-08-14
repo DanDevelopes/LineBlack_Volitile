@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0lyk8c3ow87d"]
+
+[ext_resource type="Script" path="res://Assets/Code/Logic/MapLogic/rightWall.cs" id="1_dq45j"]
+[ext_resource type="PackedScene" uid="uid://s68pec3b0dq4" path="res://Scenes/Levels/Test Scenes/RightWall.tscn" id="3_iamr3"]
+[ext_resource type="PackedScene" uid="uid://dfewk32oiy8oj" path="res://Scenes/GameAI/Breadcrum_Cover_Generator.tscn" id="4_gs65t"]
+
+[node name="RightWall_Cover" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -22)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_dq45j")
+
+[node name="Breadcrum_Cover_Generator" parent="." instance=ExtResource("4_gs65t")]
+position = Vector2(-16, 22)
+
+[node name="Breadcrum_Cover_Generator2" parent="." instance=ExtResource("4_gs65t")]
+position = Vector2(16, 7)
+
+[node name="rightWall" parent="." instance=ExtResource("3_iamr3")]
+position = Vector2(0, 0)

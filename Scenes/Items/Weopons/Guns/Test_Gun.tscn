@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1bfb3e6xpaye"]
+
+[ext_resource type="Script" path="res://Assets/Code/Items/Weopons/Guns/Test_Gun.cs" id="1_pc4wn"]
+[ext_resource type="Texture2D" uid="uid://bg27wh7sl2vlg" path="res://Assets/Sprites/Items/Weopons/Guns/TestGun.png" id="2_yj6pf"]
+
+[node name="TestGun" type="Node2D"]
+script = ExtResource("1_pc4wn")
+
+[node name="TestGun" type="Sprite2D" parent="."]
+texture = ExtResource("2_yj6pf")
+
+[node name="EndOfBarrel" type="Marker2D" parent="."]
+position = Vector2(6, -1)

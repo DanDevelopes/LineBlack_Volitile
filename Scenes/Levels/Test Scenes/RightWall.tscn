@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://s68pec3b0dq4"]
+
+[ext_resource type="Script" path="res://Assets/Code/Logic/MapLogic/rightWall.cs" id="1_1ojis"]
+[ext_resource type="Texture2D" uid="uid://ucf7ei5w5mmk" path="res://Assets/Sprites/MapEntities/Levels/Test_Wall_Right.png" id="2_k7uog"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b4wgg"]
+a = Vector2(33, 28)
+b = Vector2(-2, 11)
+
+[node name="rightWall" type="StaticBody2D"]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -22)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_1ojis")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -13)
+texture = ExtResource("2_k7uog")
+
+[node name="BehindWall" type="Area2D" parent="."]
+z_as_relative = false
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BehindWall"]
+position = Vector2(-10, 10)
+polygon = PackedVector2Array(-6, -68, -6, -3, 26, 13, 26, -52)
+
+[node name="WallCollision" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-16, -5)
+shape = SubResource("SegmentShape2D_b4wgg")
+
+[connection signal="area_entered" from="BehindWall" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="BehindWall" to="." method="_on_area_2d_area_exited"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://ix8vrlowq71l"]
+
+[ext_resource type="Script" path="res://Assets/Code/Player/PlayerScript.cs" id="1_micyv"]
+[ext_resource type="Texture2D" uid="uid://lfrsfdr7es54" path="res://Assets/Sprites/Templates/GenericHumanTemplateModel.png" id="2_idmgv"]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+collision_mask = 3
+up_direction = Vector2(0, 1)
+safe_margin = 1.0
+script = ExtResource("1_micyv")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="RoundPerSecond" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_idmgv")
+offset = Vector2(0, -27.955)
+
+[node name="PlayerCam" type="Camera2D" parent="."]
+
+[node name="x_y_sort" type="Marker2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -0.125)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(3.33786e-06, -0.125)
+scale = Vector2(0.845397, -0.378722)
+polygon = PackedVector2Array(-13.0116, -0.330057, -2.05407e-06, -14.7692, 14.1945, -0.330057, -3.94828e-06, 12.8722)
+
+[node name="ItemHolder" type="Node2D" parent="."]
+position = Vector2(0, -38)
+
+[node name="FloorTileArea" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FloorTileArea"]
+position = Vector2(3.33786e-06, -0.125)
+scale = Vector2(1.625, 0.8125)
+polygon = PackedVector2Array(-9.84616, 2.61538, -2.05407e-06, -6.15385, 9.84615, 2.61538, -2.05407e-06, 13.6923)
+
+[node name="Head" type="Area2D" parent="."]
+position = Vector2(3.33786e-06, -34.125)
+scale = Vector2(1.625, 0.8125)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Head"]
+position = Vector2(0, 27)
+scale = Vector2(1.625, 0.8125)
+polygon = PackedVector2Array(-1.51479, -46.6745, -2.27219, -49.7041, -1.89349, -63.3373, -0.757398, -67.8817, 1.51479, -67.8817, 2.65089, -63.3373, 3.07692, -51.6923, 1.51479, -46.6745)
+
+[node name="Torso" type="Area2D" parent="."]
+position = Vector2(3.33786e-06, -25.125)
+scale = Vector2(1.625, 0.8125)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torso"]
+position = Vector2(2.27374e-13, 26)
+scale = Vector2(1.625, 0.8125)
+polygon = PackedVector2Array(-2.65089, -1.51479, -3.02959, -27.2663, -5.68047, -30.2959, -4.54438, -43.929, -4.30769, -54.1538, -3.02959, -62.1065, -2.65089, -78.7692, 0.378697, -84.8284, 3.78698, -75.7396, 3.40828, -66.6509, 1.89349, -59.0769, 2.65089, -65.1361, 3.02958, -74.2249, 1.51479, -80.284, -0.757398, -80.284, -1.89349, -77.2544, -2.65089, -65.1361, -2.65089, -60.5917, -1.89349, -57.5621, 1.89349, -59.0769, 3.40828, -57.5621, 5.30177, -43.929, 4.16568, -27.2663, 3.40828, -24.2367, 3.02958, 6.05917, 0.378697, 9.08876, -3.40829, 6.05917)
