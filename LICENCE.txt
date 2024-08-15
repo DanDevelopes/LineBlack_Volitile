@@ -1,10 +1,9 @@
 /* 
  * Copyright (C) Daniel Robert Mountney - All Rights Reserved
- * Unauthorized modification, distribution, or use of these files is strictly prohibited.
- * Any damage or loss resulting from the use of this software is the sole responsibility 
- * of the user, as this software is provided in early access for demonstration purposes only.
+ * Unauthorized modification, distribution, or use of these files, including but not limited to game assets, code, and documentation, is strictly prohibited.
+ * Any damage, loss, or unintended consequences resulting from the use of this software is the sole responsibility of the user, as this software is provided in early access for demonstration purposes only.
  * 
  * Written by Daniel Robert Mountney <danielmountney@live.co.uk>, August 2024
  * 
- * If any code snippets are to be used, permission must be requested and granted by the author.
+ * If any code snippets or assets are to be used, permission must be requested and granted by the author.
  */
