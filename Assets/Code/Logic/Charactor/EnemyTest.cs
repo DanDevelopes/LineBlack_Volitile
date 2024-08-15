@@ -35,6 +35,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	HumanActions actions;
 	private Marker2D x_y_sort;
 	private EntityBreadcrumLogic breadcrumLogic = new EntityBreadcrumLogic();
+	private Godot.Vector2 objectiveLocation;
 	#endregion
 	#region class SubNodes
 	public NavigationAgent2D PathFinder()
@@ -174,9 +175,10 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 			if (pathFinder.IsNavigationFinished())
 			{
 				actions.NextObjective(this.GlobalPosition, 2000);
+				objectiveLocation = actions.GetObjectiveLocation();
 				
 			}
-			pathFinder.TargetPosition = actions.GetObjectiveLocation();
+			pathFinder.TargetPosition = objectiveLocation;
 			this.Velocity = nextPathPoint.Normalized() * speed;
 			pathFinder.Velocity = this.Velocity;
 			MoveAndSlide();
