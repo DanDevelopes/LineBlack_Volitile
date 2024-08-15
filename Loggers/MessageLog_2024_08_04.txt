@@ -1,6 +1,0 @@
-[Messege] Time: 19:23 : EnemyTest is Initialized
-[Messege] Time: 19:23 : PlayerScript is Initialized
-[Messege] Time: 19:23 : Logging Start
-[Messege] Time: 19:42 : PlayerScript is Initialized
-[Messege] Time: 19:42 : Logging Start
-[Messege] Time: 19:42 : EnemyTest is Initialized

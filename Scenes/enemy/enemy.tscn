@@ -62,11 +62,12 @@ polygon = PackedVector2Array(-4.92308, -2.46154, -3.69231, -4.92308, -4.30769, -
 position = Vector2(0, 26)
 
 [node name="PathFinder" type="NavigationAgent2D" parent="PathFinderPosition"]
-path_desired_distance = 5.0
-target_desired_distance = 20.0
 avoidance_enabled = true
-radius = 40.0
+radius = 34.77
+neighbor_distance = 5405.5
 time_horizon_agents = 10.0
+max_speed = 1000.0
+avoidance_priority = 0.0
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 debug_path_custom_line_width = 5.16

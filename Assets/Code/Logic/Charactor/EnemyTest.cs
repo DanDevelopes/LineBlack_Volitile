@@ -11,7 +11,7 @@ using System.Threading;
 using Logic.Character.interfaces;
 using System.Text.RegularExpressions;
 using Logic.Charactor.EntityIdentifier;
-using System.Runtime;
+
 
 public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnemy
 {
@@ -79,11 +79,16 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		enemySight = EnemySight();
 		itemHolder = ItemHolder();
 
+		pathFinder.AvoidanceEnabled = true;
+		pathFinder.AvoidanceMask = 1;
+		
+
 		PackedScene gunResource = GD.Load<PackedScene>("res://Scenes/Items/Weopons/Guns/Test_Gun.tscn");
 		gun = gunResource.Instantiate() as Test_Gun;
 		gun.Initualise(id);
 		itemHolder.AddChild(gun);
 		gun.Position = new Vector2() {X = 11, Y = 0};
+
 
 		Thread setUpThread = new Thread(async () => await AsyncSetup());
 		setUpThread.Start();
@@ -98,9 +103,9 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		{
 		try{
 			EntityIdentifier.SetLocation(this.GlobalPosition, id);
-			if(health < 0)
+			if(health <= 0)
 			{
-				this.QueueFree();
+				BecomeLoot();
 			}
 			healthLable.Text = $"Health {health}";
 			Vector2 nextPathPoint = pathFinder.GetNextPathPosition() - this.pathFinderPositionNode.GlobalPosition;
@@ -122,9 +127,11 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 			if (pathFinder.IsNavigationFinished())
 			{
 				actions.NextObjective(this.GlobalPosition, 2000);
-				pathFinder.TargetPosition = actions.GetObjectiveLocation();
+				
 			}
+			pathFinder.TargetPosition = actions.GetObjectiveLocation();
 			this.Velocity = nextPathPoint.Normalized() * speed;
+			pathFinder.Velocity = this.Velocity;
 			MoveAndSlide();
 		}
 		catch(Exception ex)
@@ -133,7 +140,13 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		}
 		}
 	}
-	private void ItemHolderDirection(Godot.Vector2 Position)
+
+    private void BecomeLoot()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void ItemHolderDirection(Godot.Vector2 Position)
 	{
 		itemHolder.Rotation = GameMath.DirectionToRotation(GetGlobalMousePosition(),itemHolder.GlobalPosition);
 	}

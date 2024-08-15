@@ -1666,7 +1666,7 @@ y_sort_enabled = false
 position = Vector2(180.285, 165.286)
 
 [node name="Enemy" parent="." instance=ExtResource("4_ilw2f")]
-position = Vector2(-49, 15)
+position = Vector2(135, -72)
 
 [node name="HUD" parent="." instance=ExtResource("5_ewl1i")]
 
@@ -1689,4 +1689,4 @@ position = Vector2(36, 81)
 position = Vector2(-143.715, 1.28612)
 
 [node name="Enemy3" parent="." instance=ExtResource("4_ilw2f")]
-position = Vector2(-65.7149, -25.7139)
+position = Vector2(322, 49)
