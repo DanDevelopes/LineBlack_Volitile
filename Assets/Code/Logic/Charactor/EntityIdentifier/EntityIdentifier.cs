@@ -1,12 +1,11 @@
 using Godot;
-using Logic.Character.EntityLog.Model;
+using Logic.Character.EntityIdentifier.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
-namespace Logic.Charactor.EntityIdentifier
+namespace Logic.Character.EntityIdentifier
 {
 	public static class EntityIdentifier
 	{
@@ -97,7 +96,20 @@ namespace Logic.Charactor.EntityIdentifier
 	}
 	public class Validation
 	{
-		public bool isValid{ get; set; }
-		public Exception exception{ get; set; }
+		public bool isValid
+		{ 
+			get; 
+			set; 
+		}
+		public Exception exception
+		{ 
+			get; 
+			set; 
+		}
+		public bool isFaction
+		{
+			get; 
+			set;
+		}
 	}
 }

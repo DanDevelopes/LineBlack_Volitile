@@ -3,18 +3,17 @@ using System;
 using Logic.GameAI.PathFinding.BreadCrums;
 using Logic.Charactor.Interfaces;
 using System.Threading.Tasks;
-using Logic.player;
 using Logic.GameAI.Actions;
 using static GlobalEnums.CharacterEnums;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using Logic.Character.interfaces;
 using System.Text.RegularExpressions;
-using Logic.Charactor.EntityIdentifier;
+using Logic.Character.EntityIdentifier;
 
 
 public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnemy
 {
+	#region class globals
 	int id;
 	[Export] float speed = 50;
 	object initLock = new object();
@@ -34,10 +33,10 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	int targetId;
 	Node2D itemHolder;
 	HumanActions actions;
-	EnemyTest()
-	{
-		actions = new HumanActions(this);
-	}
+	private Marker2D x_y_sort;
+	private EntityBreadcrumLogic breadcrumLogic = new EntityBreadcrumLogic();
+	#endregion
+	#region class SubNodes
 	public NavigationAgent2D PathFinder()
 	{
 		pathFinderPositionNode = GetNode<Node2D>("PathFinderPosition");
@@ -62,9 +61,28 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	public Label Health(){
 		return GetNode<Label>("Health");
 	}
-	private Marker2D x_y_sort;
-	private EntityBreadcrumLogic breadcrumLogic = new EntityBreadcrumLogic();
-	// Called when the node enters the scene tree for the first time.
+	
+	public Node2D ItemHolder()
+	{
+		return GetNode<Node2D>("ItemHolder");
+	}
+
+	public Node2D TestGun()
+	{
+		return GetNode<Node2D>("ItemHolder/TestGun");
+	}
+
+	public RayCast2D EnemySight()
+	{
+		return GetNode<RayCast2D>("ItemHolder/EnemySight");
+	}
+	#endregion
+	#region SetUp
+	EnemyTest()
+	{
+		actions = new HumanActions(this);
+	}
+	
 	public override void _Ready()
 	{
 		id = EntityIdentifier.GetNewID();
@@ -97,6 +115,35 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		
 		Task.Run(async () => await Logger.LogMessage($"{this.GetType().Name} is Initialized"));
 	}
+
+
+	private async Task AsyncSetup()
+	{
+		await ToSignal(GetTree(), "physics_frame");
+		lock(initLock)
+		{
+			while(!isInitualized)
+			{
+				try
+				{
+					if (breadcrumLogic.GetBreadcrumAmount() > 0)
+					{
+						actions.SetLocation(GlobalPosition);
+						actions.SetAction(HumanActionsTypes.Roam);
+						actions.NextObjective(GlobalPosition, 2000);
+						pathFinder.TargetPosition = actions.GetObjectiveLocation();
+						isInitualized = true;
+					}
+				}
+				catch(Exception ex)
+				{
+					Task.Run(async () => await Logger.LogException(ex));
+				}
+			}
+		}		
+	}
+	#endregion
+
 	public override void _PhysicsProcess(double delta)
 	{
 		lock(initLock)
@@ -141,19 +188,26 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		}
 	}
 
+
     private void BecomeLoot()
     {
-        throw new NotImplementedException();
+        // loot needs to be implemnted here. 
+		this.QueueFree();
     }
+
 
     private void ItemHolderDirection(Godot.Vector2 Position)
 	{
 		itemHolder.Rotation = GameMath.DirectionToRotation(GetGlobalMousePosition(),itemHolder.GlobalPosition);
 	}
+
+
 	Godot.Vector2 GetFootPostition()
 	{
 		return x_y_sort.GlobalPosition;
 	}
+
+
 	private void AttackTarget()
 	{
 		var targetLocation = EntityIdentifier.GetLocation(targetId);
@@ -166,92 +220,20 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 
 		}
 	}
+
+
 	public void on_head_area_entered(Area2D area){
 		string testString = area.Name;
 		targetId = int.Parse(Regex.Match(Regex.Match(testString, @"#Owner+\[+\d+\]#").Value, @"\d+").Value); // Bullet#Owner[1]##Damage[20]#
 		int damage = int.Parse(Regex.Match(Regex.Match(testString, @"#Damage+\[+\d+\]#").Value, @"\d+").Value);
 		health -= damage * 2;
 	}
+
+
 	public void on_torso_area_entered(Area2D area){
 		string testString = area.Name;
 		targetId = int.Parse(Regex.Match(Regex.Match(testString, @"#Owner+\[+\d+\]#").Value, @"\d+").Value); // Bullet#Owner[1]##Damage[20]#
 		int damage = int.Parse(Regex.Match(Regex.Match(testString, @"#Damage+\[+\d+\]#").Value, @"\d+").Value);
 		health -= damage;
 	}
-
-	private async Task AsyncSetup()
-	{
-		await ToSignal(GetTree(), "physics_frame");
-		lock(initLock)
-		{
-			while(!isInitualized)
-			{
-				try
-				{
-					if (breadcrumLogic.GetBreadcrumAmount() > 0)
-					{
-						actions.SetLocation(GlobalPosition);
-						actions.SetAction(HumanActionsTypes.Roam);
-						actions.NextObjective(GlobalPosition, 2000);
-						pathFinder.TargetPosition = actions.GetObjectiveLocation();
-						isInitualized = true;
-					}
-				}
-				catch(Exception ex)
-				{
-					Task.Run(async () => await Logger.LogException(ex));
-				}
-			}
-		}		
-	}
-
-	public Node2D ItemHolder()
-	{
-		return GetNode<Node2D>("ItemHolder");
-	}
-
-	public Node2D TestGun()
-	{
-		return GetNode<Node2D>("ItemHolder/TestGun");
-	}
-
-	public RayCast2D EnemySight()
-	{
-		return GetNode<RayCast2D>("ItemHolder/EnemySight");
-	}
 }
-
-/*
-Seeker setup is abit complex in c# if there is an easier way then let me know here is my code 
-	private async Task SeekerSetup()
-	{
-		await ToSignal(GetTree(), "physics_frame");
-		if (PlayerStatus.PlayerLocation() != new Godot.Vector2() {X = 0, Y = 0} )
-			pathFinder.TargetPosition = PlayerStatus.PlayerLocation();
-	}
-
-Learn about thread locking to make sure your threads don't cross which can lead to corruption for example 
-
-	private static readonly object playerLocationLock = new object();
-	public static void SetPlayerLocation(Godot.Vector2 location)
-	{
-		lock (playerLocationLock)
-		{
-			playerLocation = location;
-		}
-	}
-
-	public static Godot.Vector2 PlayerLocation()
-	{
-		lock (playerLocationLock)
-		{
-			return playerLocation;
-		}
-	}
-
-the c# compiler will tell you this needs awaiting, it doesn't. it is a task which is similar to void but async it doesn't need awaiting because it doesn't return anything so _ready can finish before SeekerSetup() is finished.
-	public override void _Ready()
-	{
-		SeekerSetup();
-	}
-*/

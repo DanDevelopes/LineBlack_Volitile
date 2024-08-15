@@ -7,8 +7,8 @@ using Logic.player;
 using Player.Interfaces;
 using static GlobalEnums.PlayerEnums;
 using System.Threading.Tasks;
-using Logic.Charactor.EntityIdentifier;
 using System.Text.RegularExpressions;
+using Logic.Character.EntityIdentifier;
 public partial class PlayerScript : CharacterBody2D, IPlayer
 {   
 	#region Get Subnodes

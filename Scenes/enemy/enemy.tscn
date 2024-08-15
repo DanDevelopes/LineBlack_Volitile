@@ -63,11 +63,10 @@ position = Vector2(0, 26)
 
 [node name="PathFinder" type="NavigationAgent2D" parent="PathFinderPosition"]
 avoidance_enabled = true
-radius = 34.77
+radius = 27.83
 neighbor_distance = 5405.5
 time_horizon_agents = 10.0
 max_speed = 1000.0
-avoidance_priority = 0.0
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 debug_path_custom_line_width = 5.16
