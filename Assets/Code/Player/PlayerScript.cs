@@ -9,6 +9,7 @@ using static GlobalEnums.PlayerEnums;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Logic.Character.EntityIdentifier;
+using Items.Mods;
 public partial class PlayerScript : CharacterBody2D, IPlayer
 {   
 	#region Get Subnodes
@@ -86,7 +87,7 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 	#endregion
 	#region	Class globals
 	Godot.Vector2 velMultiplier;
-	float delta;
+	double delta;
 	float tileSizeXAxis = 4 * 30;
 	float tileSizeYAxis = 2 * 30;
 	Signal CharectorLocation = new();
@@ -100,7 +101,7 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 	int id;
 	Test_Gun gun;
 	#endregion
-	
+	DashDrive dashDrive;
 
 	public PlayerScript()
 	{
@@ -128,14 +129,15 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		gun.Initualise(id);
 		itemHolder.AddChild(gun);
 		gun.Position = new Vector2() {X = 11, Y = 0};
-
+		dashDrive = new DashDrive(this);
 		Task.Run(()=> Logger.LogMessage($"{this.GetType().Name} is Initialized"));
 	}
 
-
 	public override void _Process(double delta)
 	{
-		
+		this.delta = delta;
+		dashDrive.Update(delta);
+		dashDrive.Use(GetGlobalMousePosition());
 		PlayerStatus.SetHealth(health);
 		if(Input.IsMouseButtonPressed(MouseButton.Left))
 		{
