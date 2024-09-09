@@ -1,16 +1,19 @@
 using Godot;
 using Items.Weopens.Projectiles.Guns.Model.Interfaces;
-using System;
+using Logic.Item;
+using Newtonsoft.Json;
+using static GlobalEnums.ItemEnums;
 using static GlobalEnums.ItemEnums.GunEnums;
 
 namespace Items.Weopons.Projectiles.Guns.Model
 {
     public class GunModel: IGunModel
     {
-        public GunModel(string name, int id, GunType type, FireType fireType, int damage, float range, float speed, float spread, int roundPerSecond, int reloadTime, int ownerId)
+        public GunModel(string name, GunType type, FireType fireType, int damage, float range, float speed, float spread, int roundPerSecond, int reloadTime, int ownerId)
         {
             this.name = name;
-            this.id = id;
+            this.id = ItemLogic.GiveNewId(ItemTypes.Weopon);
+            
             this.type = type;
             this.damage = damage;
             this.range = range;
@@ -19,6 +22,7 @@ namespace Items.Weopons.Projectiles.Guns.Model
             this.ownerId = ownerId;
             this.roundPerSecond = roundPerSecond;
             this.reloadTime = reloadTime;
+            ItemLogic.AddAttributes(JsonConvert.SerializeObject((IGunModel)this), this.id);
         }
         
         public int Damage()

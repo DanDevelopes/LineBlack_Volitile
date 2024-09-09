@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dvube4jc7b5un" path="res://Scenes/Levels/Test Scenes/LeftWall_Cover.tscn" id="5_j4k15"]
 [ext_resource type="PackedScene" uid="uid://cao71xakvoo81" path="res://Scenes/GameAI/Breadcrum_Path_Generate.tscn" id="6_fuuke"]
 [ext_resource type="PackedScene" uid="uid://d0lyk8c3ow87d" path="res://Scenes/Levels/Test Scenes/RightWall_Cover.tscn" id="6_x7h7f"]
-[ext_resource type="Texture2D" path="res://Assets/Sprites/MapEntities/Levels/BVL_Navigation_01.png" id="7_uh4m4"]
+[ext_resource type="Texture2D" uid="uid://chihbefjgotl5" path="res://Assets/Sprites/MapEntities/Levels/BVL_Navigation_01.png" id="7_uh4m4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b3jht"]
 source_geometry_group_name = &"navigation_polygon_source_group"
