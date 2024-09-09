@@ -9,6 +9,7 @@ using System.Threading;
 using Logic.Character.interfaces;
 using System.Text.RegularExpressions;
 using Logic.Character.EntityIdentifier;
+using Logic.Character;
 
 
 public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnemy
@@ -16,6 +17,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	#region class globals
 	int id;
 	[Export] float speed = 50;
+	NPCTemplate npcTemplate;
 	object initLock = new object();
 	double delta;
 	Test_Gun gun;
@@ -30,6 +32,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	bool isInitualized = false;
 	bool isFindingCover = false;
 	bool isTakingCover;
+	Godot.Vector2 nextPathPoint;
 	int targetId;
 	Node2D itemHolder;
 	HumanActions actions;
@@ -86,6 +89,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	
 	public override void _Ready()
 	{
+		npcTemplate = new NPCTemplate();
 		id = EntityIdentifier.GetNewID();
 		x_y_sort = XYsort();
 		health = 100;
@@ -156,7 +160,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 				BecomeLoot();
 			}
 			healthLable.Text = $"Health {health}";
-			Vector2 nextPathPoint = pathFinder.GetNextPathPosition() - this.pathFinderPositionNode.GlobalPosition;
+			nextPathPoint = pathFinder.GetNextPathPosition() - this.pathFinderPositionNode.GlobalPosition;
 			if(!isInitualized)
 				return;
 			actions.SetLocation(GlobalPosition);
@@ -179,7 +183,8 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 				
 			}
 			pathFinder.TargetPosition = objectiveLocation;
-			this.Velocity = nextPathPoint.Normalized() * speed;
+			var checkAndCompare = npcTemplate.WalkDirection(this.Velocity, nextPathPoint.Normalized()) * speed;
+			this.Velocity = checkAndCompare;
 			pathFinder.Velocity = this.Velocity;
 			MoveAndSlide();
 		}
@@ -190,7 +195,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		}
 	}
 
-
+    
     private void BecomeLoot()
     {
         // loot needs to be implemnted here. 
