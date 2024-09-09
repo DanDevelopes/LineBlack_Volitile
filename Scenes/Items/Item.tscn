@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://denq3t24117m6"]
+
+[ext_resource type="Script" path="res://Assets/Code/Items/ItemScript/ItemScript.cs" id="1_0mprn"]
+[ext_resource type="Texture2D" uid="uid://chihbefjgotl5" path="res://Assets/Sprites/MapEntities/Levels/BVL_Navigation_01.png" id="2_gvn7j"]
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_0mprn")
+
+[node name="ItemImage" type="Sprite2D" parent="."]
+
+[node name="PickUpArea" type="Area2D" parent="."]
+
+[node name="PickUpCollision" type="CollisionPolygon2D" parent="PickUpArea"]
+polygon = PackedVector2Array(0, -8, 16, 0, 0, 8, -16, 0)
+
+[node name="BvlNavigation01" type="Sprite2D" parent="."]
+texture = ExtResource("2_gvn7j")
