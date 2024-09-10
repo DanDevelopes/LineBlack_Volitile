@@ -3,13 +3,15 @@ using Logic.Item;
 using System;
 using static GlobalEnums.ItemEnums;
 
-public partial class ItemScript : Node2D
+public partial class ItemScript : Node2D, IImageScript
 {
-	
+	enum ItemImageSelection {LargeHealthPack, b, c, d};
 	[Export] ItemTypes ItemType = ItemTypes.None;
+	[Export] ItemImageSelection itemImageSelection;
 	bool isInitialised = false;
 	int id;
-	ItemScript()
+
+    ItemScript()
 	{
 
 	}
@@ -40,4 +42,13 @@ public partial class ItemScript : Node2D
         throw new NotImplementedException();
     }
 
+    public Sprite2D ItemImage()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Sprite2D DereriorationBlend()
+    {
+        throw new NotImplementedException();
+    }
 }
