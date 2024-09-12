@@ -1,13 +1,19 @@
-futuristic zomboid like survival 
+futuristic role playing survival game. 
 
-post apocalyptic world(war, delusional soldiers, scavenger, bio engineered mutant animals, singularity AI/Killer robots, wild animals/flora, and abandoned building, technology,  vehicles, and ruins) 
+post apocalyptic world(war, delusional soldiers, scavenger, bio engineered mutant animals, AI/Killer robots, wild animals/flora, abandoned building, technology, vehicles, and militery equiptment) 
 
 world lore
-war has happened, everyone unfortunate to still be alive is either fighting to survive, lost their minds, or thriving off the backs of others.
+	War has happened, everyone unfortunate to still be alive is either fighting to survive, lost their minds, or thriving off the backs of others.
 
-there is many threats within the world such as rogue AIs designed to kill everything or working perfectly from an enemy state even though there is no more war and will use everything at their disposal including bio weapons and killer hunter robots. make sure not to be hunted yourself or get caught in a crossfire.
+	there is many threats within the world such as rogue AIs designed to "End suffering" or Eradicate the the land for a forieng state even though there is no more war 
+	and will use everything at their disposal including bio weapons and killer hunter robots. 
+	make sure not to be hunted yourself or get caught in a crossfire if you get viewed as a threat or not worther to stand on the soil where your first breaths were made.
 
-mutated and wild creatures or savage survivors roam the world looking for their next meal and are more than willing to hunt, swarm and track you down.
+	mutated and wild creatures or savage survivors roam the world looking for their next meal and are more than willing to hunt, swarm and track you down.
+
+	REAP Royal Empirical Autocracy Province was a prewar nation who only had one desire of world domenation. the nation was comprised of one family who viewed 
+	themself as better and above all worth more than anyone who lived within they nation. 
+
 
 enemies:
 each enemy will be attracted either by your presence or what's in the surroundings, such as death and rotting corpses, where players or survivors have been spotted, scrap and loot
@@ -36,14 +42,14 @@ player character classes:
 				sub attributes:
 					Engineering:
 					Crafting:
-				hacking
-				perdicting enemy movements
+					Hacking:
+					perdicting enemy movements
 
-			luck:
+			Luck:
 				loot gathering
 				enemy weopon malfunction
-				really unfortunate events that act in your favour
-	crafting:
+				really unfortunate events that act in your favour.
+			
 
 Non Play Characters:
 	Aggresion system:
@@ -62,6 +68,8 @@ Non Play Characters:
 			attracted by: technology scrap, junk scrap, food/water, and secure and defendable areas
 Items: 
 		Guns:
+			Types:
+				Energy Requires Energy Ammo
 			Shoot Mechanic: 
 			cursor aim and clock:
 				Bullets will not be detectable or monitor until in position of where mouse clicked.
@@ -119,20 +127,26 @@ Factions:
 			Highly skilled with technology, use it to enhance themselves as well as to build high grade robots
 		
 		Phykers:
-			Predict where motives
+			Predict where motives, start cults
 
 		Enforces:
 			Prewar Pristine group looking to claim the worldiness as thier own. Authoriterian. See others as weaker
 			and prepared to kill with prejudice and clense the world or the filth that remains.
 
-	Cybernetic	
-		ADIOS:
-			Autonimous Defence and Inteligence Operating Systems.
-			Rogue Ai, "Created to protect Human" but in order to protect human there must only be one left.  
+	Cybernetic:
+		NESIS
+			NESIS (New Eden Service Inteligents Systems). Serving to add prosperity to humanity and bring 
+			comfert and luxery.
+			after the start of the war, the AI started by its first malfunction of poisoning foods and drinks
+			of the population with a 
+			highly fatel dose of (Choose a poise) to lessen the suffering that would incur from the
+			resolting confilct. after the war the AI decide started to create robots thats goal was to cleanse
+			Humanity of it's suffering.
 
-		RE-CORE:
-			Royal Empirical - CORE.
-			AI from a war long ago Designed to destroy and eleminate all who enhabit the lands.
+		REAP-ERS:
+			Royal Empirical Autocracy Province - Eradication Repurpose Systems.
+			AI from a war long ago Designed to destroy and eradicate all who are not entiled to live in the homelands.
+			created by the forieng nation of the Royal Empirical Autocracy Province that see the homelands as thier own.  
 
 				
  
@@ -148,7 +162,7 @@ difficulty:
 		Hard:
 		Meduim:
 		Easy:
-	These will be developer prefered as recomended by the player.
+			These will be developer prefered as recomended by the player but custom settings can be set by player.
 
 save: psychic foresight
 	Psyker mode: ability to save and take different paths
@@ -171,4 +185,9 @@ coding/Design Notes:
 
 	Path goto selected node chosen by action which the point that the path the enity is on can find the closest one
 	Code the least amount of breadcrums to find disired node.
-	
+
+	Areas will be calculated when player is not within them all models within this area will not exist but saved and recalulated depending how long player or far the player is from the location
+	the amount of time will add a multiplier to what has changed. the area will have wieghting which will use what resources and favourability toward which factions are there. high tech yield will
+	be more favourable towards cybenectic factions or TechnoFreaks, more competing factions will lead to decay and biological groth which will intern add more wild life and dangerous creatures.
+	the caluculations need to not wipe out factions and keep the a viereition of factions and wild life. each think that happens should be determined by a dice roll.
+	weightings can including reputation between factions, biologic factors, resources, 
