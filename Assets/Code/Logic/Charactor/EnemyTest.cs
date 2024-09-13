@@ -28,7 +28,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	Label healthLable;
 	Godot.Vector2 lastGlobalPosition;
 	Node2D pathFinderPositionNode;
-	[Export] NavigationAgent2D pathFinder;
+	NavigationAgent2D pathFinder;
 	bool isInitualized = false;
 	bool isFindingCover = false;
 	bool isTakingCover;

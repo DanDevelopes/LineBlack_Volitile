@@ -16,12 +16,13 @@ public partial class Test_Gun : Node2D, IGun
     // Called when the node enters the scene tree for the first time.
     public Test_Gun()
 	{
-		id = ItemLogic.GiveNewId();
+		id = ItemLogic.GiveNewId(ItemTypes.Weopon);
 	}
 
 	public void SetOwnerId(int ownerId)
 	{
 		this.ownerId = ownerId;
+		ItemLogic.pickUpItem(id, ownerId);
 		gunInfo.UpdateOwner(ownerId);
 	}
 	public int GetGunId(){
@@ -73,7 +74,7 @@ public partial class Test_Gun : Node2D, IGun
 	}
 	public GunModel GunModel()
 	{
-		return new GunModel("test_gun", ItemLogic.GiveNewId(), GunEnums.GunType.Rifle, GunEnums.FireType.FullAtomatic, 20, 800, 600, (float)(Math.PI / 5), 2, 3, this.ownerId);
+		return new GunModel("test_gun", GunEnums.GunType.Rifle, GunEnums.FireType.FullAtomatic, 20, 800, 600, (float)(Math.PI / 5), 2, 3, this.ownerId);
 	}
 
 	public override void _Ready()
@@ -90,7 +91,7 @@ public partial class Test_Gun : Node2D, IGun
 
     internal void Initualise(int ownerId)
     {
-        this.id = ItemLogic.GiveNewId();
+        this.id = ItemLogic.GiveNewId(ItemTypes.Weopon);
 		this.ownerId = ownerId;
 		gunInfo = GunModel();
 

@@ -30,32 +30,35 @@ public static class Logger
     }
     public static async Task LogException(Exception ex)
     {
-        await Task.Run(() => 
+        lock(logLock)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"[Exception] Time: {DateTime.Now.ToShortTimeString()} : {ex}");
-            string logEntry = sb.ToString();
-            lock(logLock)
-            {
-                
-                if(lastException != null && lastException.HResult != ex.HResult)
+            Task.Run(
+                () => 
                 {
-                    exceptionCounter = 0;
-                }
-                if (exceptionCounter >= 5)
-                {
-                    if (exceptionCounter == 5)
-                        logEntry = "Last exception reoccuring at Times: ";
-                    else
-                        logEntry = $" {DateTime.Now.ToShortTimeString()},";
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"[Exception] Time: {DateTime.Now.ToShortTimeString()} : {ex}");
+                    string logEntry = sb.ToString();
                     
-                 
+                    if(lastException != null && lastException.HResult != ex.HResult)
+                    {
+                        exceptionCounter = 0;
+                    }
+                    
+                    if (exceptionCounter >= 5)
+                    {
+                        if (exceptionCounter == 5)
+                            logEntry = "Last exception reoccuring at Times: ";
+                        else
+                            logEntry = $" {DateTime.Now.ToShortTimeString()},";
+
+
+                    }
+                    exceptionCounter++;
+                    lastException = ex;
+                    File.AppendAllText(exceptionLogPath ,logEntry);
                 }
-                exceptionCounter++;
-                lastException = ex;
-                File.AppendAllText(exceptionLogPath ,logEntry);
-            }
-        });
+            );
+        }
     }
     public static async Task LogMessage(string message)
     {
