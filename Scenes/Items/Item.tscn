@@ -1,22 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://denq3t24117m6"]
+[gd_scene load_steps=4 format=3 uid="uid://denq3t24117m6"]
 
 [ext_resource type="Script" path="res://Assets/Code/Items/ItemScript/ItemScript.cs" id="1_0mprn"]
+[ext_resource type="Texture2D" uid="uid://dclpq2tk3jv0g" path="res://Assets/Sprites/Items/Food_Meat.png" id="2_gxvg3"]
+[ext_resource type="Texture2D" uid="uid://d2uo40bbesc8x" path="res://Assets/Sprites/Items/Food_Meat_Deterioration.png" id="3_ay6i3"]
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_0mprn")
-decay = 1.0
-cookedAmount = 1.0
-itemSelection = 3
 
 [node name="LiquidBlend" type="Sprite2D" parent="."]
 
-[node name="DeteriorationBlend" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.5)
-
-[node name="CookedBlend" type="Sprite2D" parent="."]
-
 [node name="ItemImage" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
+texture = ExtResource("2_gxvg3")
+
+[node name="CookedBlend" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="DeteriorationBlend" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -7)
+texture = ExtResource("3_ay6i3")
 
 [node name="PickUpArea" type="Area2D" parent="."]
 visible = false

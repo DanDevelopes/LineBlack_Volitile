@@ -1,6 +1,7 @@
 using Godot;
 using Logic.Item;
 using System;
+using System.ComponentModel;
 using System.IO;
 using static GlobalEnums.ItemEnums;
 [Tool]
@@ -30,11 +31,11 @@ public partial class ItemScript : Node2D, IImageScript
 		"HealthPack_Small", 
 		"Food_Meat", 
 		"Jar", 
-		"Jar_Water",
+		"Jar",
 		"Bottle_Small",
-		"Bottle_Small_Water",
+		"Bottle_Small",
 		"Bottle_Large",
-		"Bottle_Large_Water",
+		"Bottle_Large",
 		"Food_Paste",
 		"Ammo_Energy",
 		"Ammo_Shotgun",
@@ -52,7 +53,11 @@ public partial class ItemScript : Node2D, IImageScript
 	[Export] float cookedAmount;
     [Export] ItemSelection itemSelection;
     ItemSelection lastItemSelected;
-	ItemScript()
+    private string pathForDeterioration;
+    private string pathForCooked;
+    private string pathForImage;
+
+    ItemScript()
 	{
 
 	}
@@ -68,14 +73,20 @@ public partial class ItemScript : Node2D, IImageScript
 	public override void _Process(double delta)
 	{
 		try{
+			// debug
+			itemSelection = ItemSelection.MeatFood;
+			cookedAmount = 1;
+			decay = 0;
 			if(lastItemSelected == itemSelection && itemImage.Texture != null)
 			{
-				
-				deteriorationBlend.Modulate = new Godot.Color() {R = 1f, G = 1f, B = 1f, A = decay};
-				return;
+				if(deteriorationBlend.Texture != null)
+					deteriorationBlend.Modulate = new Godot.Color() {R = 1f, G = 1f, B = 1f, A = decay};
+				if(cookedBlend.Texture != null)
+					deteriorationBlend.Modulate = new Godot.Color() {R = 1f, G = 1f, B = 1f, A = cookedAmount};
 			}
 			else{
 				Initialise(itemSelection);
+				lastItemSelected = itemSelection;
 			}
 		}
 		catch(Exception ex)
@@ -98,12 +109,21 @@ public partial class ItemScript : Node2D, IImageScript
 
     private void AddImage(ItemSelection newItemSelect)
     {
-		var pathForDeterioration = $"res://Assets/Sprites/Items/{ItemImageList[(int)itemSelection]}_Deterioration.png";
-		var pathForImage = $"res://Assets/Sprites/Items/{ItemImageList[(int)itemSelection]}.png";
-		if(Directory.Exists(pathForDeterioration))
-			deteriorationBlend.Texture = ResourceLoader.Load<Texture2D>(pathForDeterioration);
-		itemImage.Texture = ResourceLoader.Load<Texture2D>(pathForImage);
+		pathForDeterioration = $"res://Assets/Sprites/Items/{ItemImageList[(int)itemSelection]}_Deterioration.png";
+		pathForCooked = $"res://Assets/Sprites/Items/{ItemImageList[(int)itemSelection]}_Cooked.png";
+		pathForImage = $"res://Assets/Sprites/Items/{ItemImageList[(int)itemSelection]}.png";
 		
+		if(ResourceLoader.Exists(pathForDeterioration))
+			deteriorationBlend.Texture = ResourceLoader.Load<Texture2D>(pathForDeterioration);
+		else
+			deteriorationBlend.Texture = null;
+		
+		if(ResourceLoader.Exists(pathForCooked))
+			cookedBlend.Texture = ResourceLoader.Load<Texture2D>(pathForCooked);
+		else
+			cookedBlend.Texture = null;
+		
+		itemImage.Texture = ResourceLoader.Load<Texture2D>(pathForImage);
     }
 
     public Sprite2D ItemImage()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpnymookcpqy6"
-path="res://.godot/imported/Food_Meat_CookedLayer.png-000ecf6d4a55919c5f90623f5588541c.ctex"
+uid="uid://dmsdcl5vrsr6o"
+path="res://.godot/imported/Food_Meat_Cooked.png-cefa704db2ab93970f940b5e774a93e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Items/Food_Meat_CookedLayer.png"
-dest_files=["res://.godot/imported/Food_Meat_CookedLayer.png-000ecf6d4a55919c5f90623f5588541c.ctex"]
+source_file="res://Assets/Sprites/Items/Food_Meat_Cooked.png"
+dest_files=["res://.godot/imported/Food_Meat_Cooked.png-cefa704db2ab93970f940b5e774a93e4.ctex"]
 
 [params]
 
