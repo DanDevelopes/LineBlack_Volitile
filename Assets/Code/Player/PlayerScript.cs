@@ -318,6 +318,9 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		health -= damage;
 	}
 
-
+    public AnimatedSprite2D CharectorWalkSheet()
+    {
+        throw new NotImplementedException();
+    }
 
 }
