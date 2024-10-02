@@ -26,6 +26,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	Area2D torso;
 	RayCast2D enemySight;
 	Label healthLable;
+	AnimatedSprite2D charectorWalkSheet;
 	Godot.Vector2 lastGlobalPosition;
 	Node2D pathFinderPositionNode;
 	NavigationAgent2D pathFinder;
@@ -39,9 +40,12 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	private Marker2D x_y_sort;
 	private EntityBreadcrumLogic breadcrumLogic = new EntityBreadcrumLogic();
 	private Godot.Vector2 objectiveLocation;
-	#endregion
-	#region class SubNodes
-	public NavigationAgent2D PathFinder()
+    private Vector2 lastPosition;
+    private int lastDirectionFacing;
+
+    #endregion
+    #region class SubNodes
+    public NavigationAgent2D PathFinder()
 	{
 		pathFinderPositionNode = GetNode<Node2D>("PathFinderPosition");
 		return pathFinderPositionNode.GetNode<NavigationAgent2D>("PathFinder");
@@ -80,6 +84,10 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	{
 		return GetNode<RayCast2D>("ItemHolder/EnemySight");
 	}
+	public AnimatedSprite2D CharectorWalkSheet()
+    {
+        return GetNode<AnimatedSprite2D>("CharectorWalkSheet");
+    }
 	#endregion
 	#region SetUp
 	EnemyTest()
@@ -101,6 +109,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		pathFinder = PathFinder();
 		enemySight = EnemySight();
 		itemHolder = ItemHolder();
+		charectorWalkSheet = CharectorWalkSheet();
 
 		pathFinder.AvoidanceEnabled = true;
 		pathFinder.AvoidanceMask = 1;
@@ -114,8 +123,9 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 
 
 		Thread setUpThread = new Thread(async () => await AsyncSetup());
-		setUpThread.Start();
 		setUpThread.Priority = ThreadPriority.AboveNormal;
+		setUpThread.Start();
+		
 		
 		
 		Task.Run(async () => await Logger.LogMessage($"{this.GetType().Name} is Initialized"));
@@ -183,8 +193,9 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 				
 			}
 			pathFinder.TargetPosition = objectiveLocation;
-			var checkAndCompare = npcTemplate.WalkDirection(this.Velocity, nextPathPoint.Normalized()) * speed;
-			this.Velocity = checkAndCompare;
+			DirectionInfo checkAndCompare = npcTemplate.WalkDirection(this.Velocity, nextPathPoint.Normalized());
+			this.Velocity = checkAndCompare.Direction * speed;
+			AnimateWalk(checkAndCompare.DirectionFacing);
 			pathFinder.Velocity = this.Velocity;
 			MoveAndSlide();
 		}
@@ -195,7 +206,20 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		}
 	}
 
-    
+    private void AnimateWalk(int directionFacing)
+    {
+		if(lastDirectionFacing != directionFacing)
+		{
+			lastPosition = Position;
+			lastDirectionFacing = directionFacing;
+		}
+
+
+		charectorWalkSheet.Frame = (int)GameMath.GetDistance(lastPosition, Position) % 32 + (32 * (int)directionFacing);
+		GD.Print((int)GameMath.GetDistance(lastPosition, Position) % 31);
+    }
+
+
     private void BecomeLoot()
     {
         // loot needs to be implemnted here. 
@@ -243,4 +267,7 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 		int damage = int.Parse(Regex.Match(Regex.Match(testString, @"#Damage+\[+\d+\]#").Value, @"\d+").Value);
 		health -= damage;
 	}
+
+    
+
 }
