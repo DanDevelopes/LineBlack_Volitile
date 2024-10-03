@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm0wxkbgg651d"]
 
-[ext_resource type="Script" path="res://Assets/Code/Logic/MapLogic/rightWall.cs" id="1_1ojis"]
+[ext_resource type="Script" path="res://Assets/Code/Logic/MapLogic/Wall.cs" id="1_p7hw5"]
 [ext_resource type="Texture2D" uid="uid://ucf7ei5w5mmk" path="res://Assets/Sprites/MapEntities/Levels/Test_Wall_Right.png" id="2_k7uog"]
 [ext_resource type="Texture2D" uid="uid://bjcteryyqcep4" path="res://Assets/Sprites/MapEntities/Levels/TestLevelBackground.png" id="3_1cl65"]
 
@@ -8,13 +8,13 @@
 a = Vector2(34, 30)
 b = Vector2(-2, 11)
 
-[node name="rightWall" type="StaticBody2D"]
+[node name="RightWall" type="StaticBody2D"]
 z_index = 1
 z_as_relative = false
-position = Vector2(0, -7)
+position = Vector2(0, -23)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_1ojis")
+script = ExtResource("1_p7hw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

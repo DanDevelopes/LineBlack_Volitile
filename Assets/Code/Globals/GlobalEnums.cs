@@ -105,21 +105,13 @@ public static class GlobalEnums
     {
         [Flags]
 	    public enum Direction_enum {
-	    	[Display(Name = "Right")]
 	    	Right,
-	    	[Display(Name = "DownRight")]
 	    	DownRight,
-	    	[Display(Name = "Down")]
 	    	Down,
-	    	[Display(Name = "DownLeft")]
 	    	DownLeft,
-	    	[Display(Name = "Left")]
 	    	Left,
-	    	[Display(Name = "UpLeft")]
 	    	UpLeft,
-	    	[Display(Name = "Up")]
 	    	Up,
-	    	[Display(Name = "UpRight")]
 	    	UpRight
 	    }
     }

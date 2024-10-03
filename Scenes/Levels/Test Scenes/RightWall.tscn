@@ -7,7 +7,7 @@
 a = Vector2(33, 28)
 b = Vector2(-2, 11)
 
-[node name="rightWall" type="StaticBody2D"]
+[node name="RightWall" type="StaticBody2D"]
 z_index = 1
 z_as_relative = false
 position = Vector2(0, -22)

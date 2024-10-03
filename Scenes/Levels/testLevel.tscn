@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bjcteryyqcep4" path="res://Assets/Sprites/MapEntities/Levels/TestLevelBackground.png" id="1_ffosr"]
 [ext_resource type="PackedScene" uid="uid://ix8vrlowq71l" path="res://Scenes/Player/player.tscn" id="2_84i2f"]
+[ext_resource type="PackedScene" uid="uid://cg5wqvvdqg71q" path="res://Scenes/Levels/LeftWall.tscn" id="3_blu02"]
 [ext_resource type="Texture2D" uid="uid://b85criqxxnmft" path="res://Assets/Sprites/MapEntities/Levels/BVL_Test_Atlas_01.png" id="3_hmib6"]
-[ext_resource type="PackedScene" uid="uid://b0dqpl31u6xox" path="res://Scenes/Levels/Test Scenes/LeftWall.tscn" id="3_mxn1u"]
-[ext_resource type="PackedScene" uid="uid://s68pec3b0dq4" path="res://Scenes/Levels/Test Scenes/RightWall.tscn" id="4_fc5ll"]
+[ext_resource type="PackedScene" uid="uid://dm0wxkbgg651d" path="res://Scenes/Levels/RightWall.tscn" id="4_c08gx"]
 [ext_resource type="PackedScene" uid="uid://wgmoq02wy2bl" path="res://Scenes/GUI/hud.tscn" id="5_ewl1i"]
 [ext_resource type="PackedScene" uid="uid://dvube4jc7b5un" path="res://Scenes/Levels/Test Scenes/LeftWall_Cover.tscn" id="5_j4k15"]
 [ext_resource type="PackedScene" uid="uid://cao71xakvoo81" path="res://Scenes/GameAI/Breadcrum_Path_Generate.tscn" id="6_fuuke"]
@@ -1396,8 +1396,8 @@ texture_region_size = Vector2i(32, 16)
 0:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_b3jht")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_18eyn"]
-scenes/1/scene = ExtResource("3_mxn1u")
-scenes/2/scene = ExtResource("4_fc5ll")
+scenes/1/scene = ExtResource("3_blu02")
+scenes/2/scene = ExtResource("4_c08gx")
 scenes/3/scene = ExtResource("5_j4k15")
 scenes/4/scene = ExtResource("6_x7h7f")
 
@@ -1685,8 +1685,7 @@ position = Vector2(36, 81)
 
 [node name="Item" parent="." instance=ExtResource("12_rd8c3")]
 position = Vector2(400, 232)
-decay = 0.0
-itemSelection = 2
+itemSelection = 0
 
 [node name="NonPlayerCharacter" parent="." instance=ExtResource("12_o3kiq")]
 position = Vector2(345, 176)

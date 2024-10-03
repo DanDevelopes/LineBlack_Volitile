@@ -1,8 +1,6 @@
 using Godot;
 using Logic.Item;
 using System;
-using System.ComponentModel;
-using System.IO;
 using static GlobalEnums.ItemEnums;
 [Tool]
 public partial class ItemScript : Node2D, IImageScript
@@ -12,17 +10,14 @@ public partial class ItemScript : Node2D, IImageScript
 		SmallHealthPack = 1, 
 		MeatFood = 2,
 		JarEmpty = 3,
-		JarWater = 4,
-		SmallBottle = 5,
-		SmallWaterBottle = 6,
-		LargeBottle = 7,
-		LargeWaterBottle = 8,
-		FoodPaste = 9,
-		EnergyAmmo = 10,
-		ShotgunAmmo = 11,
-		HeavyAmmo = 12,
-		RifleAmmo = 13,
-		LightAmmo = 14
+		SmallBottle = 4,
+		LargeBottle = 5,
+		FoodPaste = 6,
+		EnergyAmmo = 7,
+		ShotgunAmmo = 8,
+		HeavyAmmo = 9,
+		RifleAmmo = 10,
+		LightAmmo = 11
 		};
 		
 	string[] ItemImageList = new string[] 
@@ -31,10 +26,7 @@ public partial class ItemScript : Node2D, IImageScript
 		"HealthPack_Small", 
 		"Food_Meat", 
 		"Jar", 
-		"Jar",
 		"Bottle_Small",
-		"Bottle_Small",
-		"Bottle_Large",
 		"Bottle_Large",
 		"Food_Paste",
 		"Ammo_Energy",
@@ -73,10 +65,6 @@ public partial class ItemScript : Node2D, IImageScript
 	public override void _Process(double delta)
 	{
 		try{
-			// debug
-			itemSelection = ItemSelection.MeatFood;
-			cookedAmount = 1;
-			decay = 0;
 			if(lastItemSelected == itemSelection && itemImage.Texture != null)
 			{
 				if(deteriorationBlend.Texture != null)
