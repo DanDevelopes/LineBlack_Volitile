@@ -12,7 +12,7 @@ using Logic.Character.EntityIdentifier;
 using Logic.Character;
 
 
-public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnemy
+public partial class NonPlayerCharacter : CharacterBody2D, INonPlayerCharactor, INonPlayerCharacter
 {
 	#region class globals
 	int id;
@@ -90,15 +90,16 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
     }
 	#endregion
 	#region SetUp
-	EnemyTest()
+	NonPlayerCharacter()
 	{
-		actions = new HumanActions(this);
+		
 	}
 	
 	public override void _Ready()
 	{
 		npcTemplate = new NPCTemplate();
 		id = EntityIdentifier.GetNewID();
+		actions = new HumanActions(this);
 		x_y_sort = XYsort();
 		health = 100;
 		head = Head();
@@ -163,46 +164,47 @@ public partial class EnemyTest : CharacterBody2D, INonPlayerCharactor, ITestEnem
 	{
 		lock(initLock)
 		{
-		try{
-			EntityIdentifier.SetLocation(this.GlobalPosition, id);
-			if(health <= 0)
+			try
 			{
-				BecomeLoot();
+				EntityIdentifier.SetLocation(this.GlobalPosition, id);
+				if(health <= 0)
+				{
+					BecomeLoot();
+				}
+				healthLable.Text = $"Health {health}";
+				nextPathPoint = pathFinder.GetNextPathPosition() - this.pathFinderPositionNode.GlobalPosition;
+				if(!isInitualized)
+					return;
+				actions.SetLocation(GlobalPosition);
+				if(targetId > 0 )
+				{
+					AttackTarget();
+				}
+				if (this.health == 100)
+				{
+					this.actions.SetAction(HumanActionsTypes.Roam);
+				}
+				else
+				{
+					this.actions.SetAction(HumanActionsTypes.TakeCoverAndShoot);
+				}
+				if (pathFinder.IsNavigationFinished())
+				{
+					actions.NextObjective(this.GlobalPosition, 2000);
+					objectiveLocation = actions.GetObjectiveLocation();
+
+				}
+				pathFinder.TargetPosition = objectiveLocation;
+				NCPDirectionInformation directionInformation = npcTemplate.WalkDirection(this.Velocity, nextPathPoint.Normalized());
+				this.Velocity = directionInformation.Direction * speed;
+				AnimateWalk(directionInformation.DirectionFacing);
+				pathFinder.Velocity = this.Velocity;
+				MoveAndSlide();
 			}
-			healthLable.Text = $"Health {health}";
-			nextPathPoint = pathFinder.GetNextPathPosition() - this.pathFinderPositionNode.GlobalPosition;
-			if(!isInitualized)
-				return;
-			actions.SetLocation(GlobalPosition);
-			if(targetId > 0 )
+			catch(Exception ex)
 			{
-				AttackTarget();
+				Task.Run(async () => await Logger.LogException(ex));
 			}
-			if (this.health == 100)
-			{
-				this.actions.SetAction(HumanActionsTypes.Roam);
-			}
-			else
-			{
-				this.actions.SetAction(HumanActionsTypes.TakeCoverAndShoot);
-			}
-			if (pathFinder.IsNavigationFinished())
-			{
-				actions.NextObjective(this.GlobalPosition, 2000);
-				objectiveLocation = actions.GetObjectiveLocation();
-				
-			}
-			pathFinder.TargetPosition = objectiveLocation;
-			DirectionInfo checkAndCompare = npcTemplate.WalkDirection(this.Velocity, nextPathPoint.Normalized());
-			this.Velocity = checkAndCompare.Direction * speed;
-			AnimateWalk(checkAndCompare.DirectionFacing);
-			pathFinder.Velocity = this.Velocity;
-			MoveAndSlide();
-		}
-		catch(Exception ex)
-		{
-			Task.Run(async () => await Logger.LogException(ex));
-		}
 		}
 	}
 
