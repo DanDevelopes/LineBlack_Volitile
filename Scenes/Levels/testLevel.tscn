@@ -1694,5 +1694,4 @@ position = Vector2(322, 49)
 
 [node name="Item" parent="." instance=ExtResource("12_rd8c3")]
 position = Vector2(400, 232)
-cookedAmount = 1.0
-itemSelection = 2
+itemSelection = 13

@@ -55,7 +55,8 @@ public static class Logger
                     }
                     exceptionCounter++;
                     lastException = ex;
-                    File.AppendAllText(exceptionLogPath ,logEntry);
+                    File.AppendAllTextAsync(exceptionLogPath ,logEntry);
+                    
                 }
             );
         }
@@ -70,7 +71,7 @@ public static class Logger
             lock (logLock)
             {
                 
-                File.AppendAllText(messageLogPath ,logEntry);
+                File.AppendAllTextAsync(messageLogPath ,logEntry);
             }
         });
     }

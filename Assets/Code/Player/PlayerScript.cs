@@ -66,6 +66,10 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
     {
         return GetNode<Area2D>("Torso");
     }
+	public AnimatedSprite2D CharectorWalkSheet()
+    {
+        return GetNode<AnimatedSprite2D>("CharectorWalkSheet");
+    }
 
 	#region Godot subnode objects
 	public Timer reloadTimer;
@@ -77,7 +81,7 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 	public Sprite2D haracterSprite;
 
 	public Camera2D playerCam;
-
+	private AnimatedSprite2D charectorWalkSheet;
 	public Marker2D x_y_sort;
 	public int health = 100;
 	public Area2D floorTileArea;
@@ -93,17 +97,20 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 	Signal CharectorLocation = new();
 	Signal AmmoPassThrough = new();
 	Direction_enum playerDirection;
+	Direction_enum lastPlayerDirection;
 	private int walkCounter;
 	private int incrementPerFrame = 2;
 	Godot.Sprite2D characterSprite;
+	Godot.Vector2 lastPosition;
 	float tileMoveY;
 	float tileMoveX;
 	int id;
 	Test_Gun gun;
 	#endregion
 	DashDrive dashDrive;
+    private bool moveKeyNotPressed;
 
-	public PlayerScript()
+    public PlayerScript()
 	{
 	}
 	public override void _Ready()
@@ -114,6 +121,7 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		itemHolder = ItemHolder();
 		head = Head();
 		torso = Torso();
+		charectorWalkSheet = CharectorWalkSheet();
 		characterSprite = GetNode<Sprite2D>("CharacterSprite");
 		// setup
 		
@@ -164,12 +172,18 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		
 		if (Godot.Input.IsKeyPressed(Key.D) || Godot.Input.IsKeyPressed(Key.A) || Godot.Input.IsKeyPressed(Key.W) || Godot.Input.IsKeyPressed(Key.S))
 		{
-			this.Velocity = GetPlayerMovement(); // * new Godot.Vector2(24f,24f);
+			
+			characterSprite.Hide();
+			charectorWalkSheet.Show();
+			this.Velocity = GetPlayerMovement() / 4; // * new Godot.Vector2(24f,24f);
 			PlayerWalk();
 			this.MoveAndSlide();
 		}
 		else
 		{
+			characterSprite.Show();
+			charectorWalkSheet.Hide();
+			lastPosition = Position;
 			SetSpriteStandStill();
 			this.Velocity = new Godot.Vector2(0,0);
 		}
@@ -183,21 +197,47 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		try
 		{
 			if (Godot.Input.IsKeyPressed(Key.D) && Godot.Input.IsKeyPressed(Key.W))
+			{
 				playerDirection = Direction_enum.UpRight;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.D) && Godot.Input.IsKeyPressed(Key.S))
+			{
 				playerDirection = Direction_enum.DownRight;
+				moveKeyNotPressed = false;
+			}
 			else if (Godot.Input.IsKeyPressed(Key.A) && Godot.Input.IsKeyPressed(Key.W)) 
+			{
 				playerDirection = Direction_enum.UpLeft;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.A) && Godot.Input.IsKeyPressed(Key.S))
+			{
 				playerDirection = Direction_enum.DownLeft;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.D))
+			{
 				playerDirection = Direction_enum.Right;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.S))
+			{
 				playerDirection = Direction_enum.Down;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.A))
+			{
 				playerDirection = Direction_enum.Left;
+				moveKeyNotPressed = false;
+			}
 			else if(Godot.Input.IsKeyPressed(Key.W))
+			{
 				playerDirection = Direction_enum.Up;
+				moveKeyNotPressed = false;
+			}
+			else
+			    moveKeyNotPressed = true;
 			
 			switch(playerDirection)
 			{
@@ -272,21 +312,17 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 
 	private void PlayerWalk()
 	{
-		if (walkCounter > 8 * incrementPerFrame || walkCounter < 1 * incrementPerFrame)
-			walkCounter = 1;
-		int value = (int)walkCounter / 2;
-		if (value < 1)
-			value = 1;
-		if(playerDirection == Direction_enum.Right || playerDirection == Direction_enum.Left)
+		if(lastPlayerDirection != playerDirection)
 		{
-			string direction = playerDirection.GetType().GetMember(playerDirection.ToString()).First().GetCustomAttribute<DisplayAttribute>().Name;
-			characterSprite.Texture = ResourceLoader.Load<Texture2D>($"res://Assets/Sprites/Templates/PlayerDebugSprites/walk{direction} #{value}.png");
+			lastPosition = Position;
+			lastPlayerDirection = playerDirection;
 		}
-		else
-		{
-			SetSpriteStandStill();
-		}
-		walkCounter++;	
+
+
+		characterSprite.Hide();
+		charectorWalkSheet.Frame = (int)GameMath.GetDistance(lastPosition, Position) % 32 + (32 * (int)playerDirection);
+		GD.Print((int)GameMath.GetDistance(lastPosition, Position) % 31);
+		
 	}
 
 
@@ -317,7 +353,4 @@ public partial class PlayerScript : CharacterBody2D, IPlayer
 		int damage = int.Parse(Regex.Match(Regex.Match(testString, @"#Damage+\[+\d+\]#").Value, @"\d+").Value);
 		health -= damage;
 	}
-
-
-
 }

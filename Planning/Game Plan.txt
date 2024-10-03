@@ -14,6 +14,12 @@ world lore
 	REAP Royal Empirical Autocracy Province was a prewar nation who only had one desire of world domenation. the nation was comprised of one family who viewed 
 	themself as better and above all worth more than anyone who lived within they nation. 
 
+	Supernatural Religion:
+		Planning. Needs to behinds the scenes. something has came into being at the war time either through an experiment gone wrong or from the shier devistation that gained access to another world or rielm of existance, 
+		This makes mutated wild life gather togeather, people chant in secret.
+		this thing gave the phykers thier abilities as this started to fester in thier blood stream.
+		it wasn't always but will now forever be appart of this world regardless if it is for good or bad.
+		(maybe don't have this as something people can solve. this needs to be evendently something but something no one knows. have the mystery as the intrege
 
 enemies:
 each enemy will be attracted either by your presence or what's in the surroundings, such as death and rotting corpses, where players or survivors have been spotted, scrap and loot
@@ -67,6 +73,13 @@ Non Play Characters:
 			drops: 
 			attracted by: technology scrap, junk scrap, food/water, and secure and defendable areas
 Items: 
+		Mods:
+			DashDrive: Allows player to suddenly jump to a cetain location
+			PulseVision: Allows the player to see sounds generated as pulses that travel around the world
+				can be caused by foot steps, objects being thrown, projectile and gunshot, and or grenades.
+			DragonBurst: Creates an inferno around the player allowing when encountering multiple enemies. when used with 
+				pace it can create a constant burn that anyone will take damage over time around the player.
+
 		Guns:
 			Types:
 				Energy Requires Energy Ammo
@@ -86,16 +99,20 @@ Items:
 				Stuns Charactors
 			Scavenger crab:
 				finds shit or useful shit
-		Health Items:
+		Health & Stims Items:
 			Bandages: 
 				stops bleeding
 			needle and thread:
 			Nano bot sringe:
-				heals all	
-		Food:
-			Human meat:
-			Mutantated animal meat:
-			Crops:
+					heals all
+				Pace:
+					Adds a glitch affect to player when moving adding red green and blue pixels to last pixels, ability time becomes 0, health is decreased by 90% and 
+					recieves 30% back after ware off. with +5% movement speed. Duration limet to 10 seconds.	
+			Food:
+				Human meat:
+				Mutantated animal meat:
+				Plants:
+		
 
 eco system(maybe):
 	Wildlife:
@@ -115,7 +132,7 @@ Factions:
 
 		Huskers:
 			Lost every bit of humanity they once had, they only care about survival and nothing else only see other
-			factions or pretty much anything edible as a meal.
+			factions or pretty much anything edible as an meal. can group but can be very fickle towards eachother.
 
 		Unamed:
 			Generic group just looking to survive
@@ -151,7 +168,7 @@ Factions:
 				
  
 survival strategy:
-	either outwitting by using stealth and traps or gun blazing, predictability is your enemy, set traps, destroy overloads to disorganise enemies
+	either outwitting by using stealth and traps or gun blazing, predictability is your enemy, set traps, destroy overlords to disorganise enemies
 
 pre war tech:
 
@@ -175,7 +192,7 @@ respawn: Nanites
 world difficulty:
 	change Enviroment, balance, Enemy Attributes, resource amount, eniviromental hazards.
 Quests:
-	Scab Machine Revolt: machines question why they were created with such inefficiency.
+	Scab Machine Revolt: machines question why they were created with such inflictions.
 
 
 

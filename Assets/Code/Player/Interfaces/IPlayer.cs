@@ -12,6 +12,7 @@ namespace Player.Interfaces
 {
     interface IPlayer
     {
+        AnimatedSprite2D CharectorWalkSheet();
         Timer ReloadTimer();
         Timer RoundsPerSecond();
         Area2D Head();
